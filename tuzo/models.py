@@ -1,10 +1,11 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
+from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user_name = models.CharField(max_length=30)
     profile_pic = CloudinaryField('image',null=True)
-    bio = models.TextField(max_length=500, default="Bio", blank=True)
+    bio = models.TextField(max_length=500,  blank=True)
     email = models.EmailField()
     phone_number = models.CharField(max_length=10, blank=True)
 
@@ -30,3 +31,22 @@ class Profile(models.Model):
     class Meta:
         ordering = ['user_name'] 
 
+class Project(models.Model):
+  title = models.CharField(max_length=50)
+  lannding_page = CloudinaryField('image',null=True)
+  description = models.TextField(max_length=500,  blank=True)
+  link =  models.URLField(max_length = 200)
+  pub_date = models.DateTimeField(auto_now_add=True)
+
+  def save_project(self):
+    self.save()
+
+  def delete_project(self,title):
+    delete =self.objects.filter(title=title).delete() 
+    return delete 
+
+  def __str__(self):
+        return self.title
+
+  class Meta:
+        ordering = ['-pub_date']     
