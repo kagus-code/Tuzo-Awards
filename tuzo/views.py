@@ -9,4 +9,4 @@ def landing (request):
   
 
   title = 'Tuzo-Awards'
-  return render (request,'index.html',{'title':title,}) 
+  return render (request,'registration/login.html',{'title':title,})  
