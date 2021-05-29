@@ -3,6 +3,7 @@ from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 
 class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)
     user_name = models.CharField(max_length=30)
     profile_pic = CloudinaryField('image',null=True)
     bio = models.TextField(max_length=500,  blank=True)
@@ -37,6 +38,7 @@ class Project(models.Model):
   description = models.TextField(max_length=500,  blank=True)
   link =  models.URLField(max_length = 200)
   pub_date = models.DateTimeField(auto_now_add=True)
+  Publisher = models.ForeignKey(User, on_delete=models.CASCADE, null=True,related_name='publisher')
 
   def save_project(self):
     self.save()
