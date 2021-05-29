@@ -1,6 +1,7 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
+from django.db.models.fields import PositiveSmallIntegerField
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)
@@ -52,3 +53,29 @@ class Project(models.Model):
 
   class Meta:
         ordering = ['-pub_date']     
+
+RATE_CHOICES = [
+(1,'1 - Trash'),
+(2,'2 - Horrible'),
+(3,'3 - Terrible'),
+(4,'4 - Bad'),
+(5,'5 - Ok'),
+(6,'6 - Deseriable'),
+(7,'7 - Good'),
+(8,'8 - Very Good'),
+(9,'9 - Perfect'),
+(10,'10 - Master Piece'),
+
+]        
+
+class Review(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviewer')
+  project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='review')
+  date = models.DateTimeField(auto_now_add=True)
+  design =PositiveSmallIntegerField(choices=RATE_CHOICES)
+  usability =PositiveSmallIntegerField(choices=RATE_CHOICES)
+  content =PositiveSmallIntegerField(choices=RATE_CHOICES)
+
+  def __str__(self):
+        return self.user.username
+
