@@ -18,64 +18,26 @@
 <div class="container">
   <div class="forms-container">
     <div class="signin-signup">
-      <form action="#" class="sign-in-form">
-        <h2 class="title">Sign in</h2>
-        <div class="input-field">
-          <i class="fas fa-user"></i>
-          <input type="text" placeholder="Username" />
+
+
+      <form  action="/accounts/login/" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form%}
+
+        <div class="form-group">
+          <button type="submit" class="btn solid" value="Login">log in</button>
         </div>
-        <div class="input-field">
-          <i class="fas fa-lock"></i>
-          <input type="password" placeholder="Password" />
-        </div>
-        <input type="submit" value="Login" class="btn solid" />
-        <p class="social-text">Or Sign in with social platforms</p>
-        <div class="social-media">
-          <a href="#" class="social-icon">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-google"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </div>
+
+        <input type="hidden" name="next" value="{{next}}">
+
+        <p class="social-text"><span>Don't have an account?</span><a href="/accounts/register/ ">Sign up</a></p>
+
       </form>
-      <form action="#" class="sign-up-form">
-        <h2 class="title">Sign up</h2>
-        <div class="input-field">
-          <i class="fas fa-user"></i>
-          <input type="text" placeholder="Username" />
-        </div>
-        <div class="input-field">
-          <i class="fas fa-envelope"></i>
-          <input type="email" placeholder="Email" />
-        </div>
-        <div class="input-field">
-          <i class="fas fa-lock"></i>
-          <input type="password" placeholder="Password" />
-        </div>
-        <input type="submit" class="btn" value="Sign up" />
-        <p class="social-text">Or Sign up with social platforms</p>
-        <div class="social-media">
-          <a href="#" class="social-icon">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-google"></i>
-          </a>
-          <a href="#" class="social-icon">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </div>
-      </form>
+
+
+
+
+    
     </div>
   </div>
 
@@ -84,8 +46,8 @@
       <div class="content">
         <h3>New here ?</h3>
         <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-          ex ratione. Aliquid!
+          Sign up to our site where you can review and post other users project
+
         </p>
         <button class="btn transparent" id="sign-up-btn">
           Sign up
@@ -97,8 +59,7 @@
       <div class="content">
         <h3>One of us ?</h3>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-          laboriosam ad deleniti.
+        Proceed to the login page and log in to your account
         </p>
         <button class="btn transparent" id="sign-in-btn">
           Sign in
@@ -109,7 +70,7 @@
   </div>
 </div>
 
-<script src="{% static 'js/app.js'   %}"></script>
+<!-- <script src="{% static 'js/app.js'   %}"></script> -->
 
 
 
