@@ -1,5 +1,5 @@
 
-{%extends "registration/base.html"%}
+{%extends "django_registration/base.html"%}
 {% load bootstrap4 %}
 {% load static%}
 
@@ -17,26 +17,23 @@
 
 <div class="container">
   <div class="forms-container">
+    {% if form.errors %}
+      <p> Some Information Might be Incorrect </p>
+    {% endif %}
     <div class="signin-signup">
 
 
-      <form  action="/accounts/login/" method="post">
+      <form  action="/accounts/register/" method="post">
         {% csrf_token %}
         {% bootstrap_form form%}
 
         <div class="form-group">
-          <button type="submit" class="btn solid" value="Login">log in</button>
+          <button type="submit" class="btn solid" value="Sign Up">Sign Up</button>
         </div>
 
         <input type="hidden" name="next" value="{{next}}">
 
-        <p class="social-text"><span>Don't have an account?</span><a href="/accounts/register/ ">Sign up</a></p>
-
       </form>
-
-
-
-
     
     </div>
   </div>
@@ -44,18 +41,17 @@
   <div class="panels-container">
     <div class="panel left-panel">
       <div class="content">
-        <h3>New here ?</h3>
+        <h3>One of us ?</h3>
         <p>
-          Sign up to our site where you can review and post other users project
-
+        Proceed to the login page and log in to your account
         </p>
-       <a href="/accounts/register/"> <button class="btn transparent" id="sign-up-btn">
-          Sign up
-        </button></a>
+        <a href="/accounts/login"><button class="btn transparent" id="sign-up-btn">
+          Log in
+        </button> </a>
       </div>
-      <img src=  "{% static 'images/log.svg' %}" class="image" alt="" />
+      <img src=  "{% static 'images/register.svg' %}" class="image" alt="" />
     </div>
-    
+
   </div>
 </div>
 
