@@ -1,14 +1,43 @@
-{%extends 'base.html'%}
 
+{%extends "base.html"%}
 {% load bootstrap4 %}
+{% load static%}
 
+
+
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/landing.css'%}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+{% endblock %}
 
 
 
 {% block content %} 
 {{block.super}}
 
-<h1 class="text-center">Testing display </h1>
+
+<div class="main-image">
+
+  <div class="inner">
+
+    <h3 style="color: white; opacity: 0.7;"> <span> Tuzo  <img class="img-fluid" src="{% static 'images/logomain.png'   %}"  alt="logo" style="width:50px"> Awards </span></h3>
+    
+<div class="cen">
+
+
+
+</div>
+
+    <span class="cen"> <small style="color: white;">Discover the best agencies and professionals in
+      Kenya
+   </small></span>
+    <a class="button"  href="mailto:ekagwima745@gmail.com">Contact us </a>
+  </div>
+</div>
+
+
+<h1 class="text-center" style="color: black;">Testing display </h1>
 
 
 
