@@ -15,6 +15,14 @@ def landing (request):
   return render (request,'index.html',{'title':title,'Posts':post,})  
 
 
+@login_required(login_url='/accounts/login/')
+def user_profile (request,userId):
+  projects = Project.objects.filter(creator=userId)
+  profile = Profile.objects.filter(user=userId)
+  print(profile)
+  profile=Profile.objects.all()
+  return render(request, 'profile/profile.html', {'posts':projects, 'profile':profile })
+
 
 @login_required(login_url='/accounts/login/')
 def upload_project(request):
