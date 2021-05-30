@@ -1,6 +1,6 @@
 from django.core.checks import messages
 from django.contrib.auth.models import User
-from django.shortcuts import render,redirect,
+from django.shortcuts import render,redirect
 from django.http  import HttpResponseRedirect,Http404
 from django.contrib.auth.decorators import login_required
 from .models import Project,Profile,Review
@@ -38,7 +38,7 @@ def upload_project(request):
       form = UploadProjectForm
   return render(request, 'upload.html', {"form":form})    
 
-
+@login_required(login_url='/accounts/login/')
 def edit_profile(request,userId):
   old_profile = Profile.objects.filter(user=userId)
   current_user =request.user

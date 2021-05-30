@@ -1,0 +1,48 @@
+{%extends "profile/base.html"%}
+{% load cloudinary %}
+{% load bootstrap4 %}
+{% load static%}
+
+  {{form.media}}
+
+{% block styles %} 
+{% bootstrap_css %}
+  <link rel="stylesheet" href="#"> 
+  {% endblock %}
+
+
+  {% block content %}
+
+  {% if user.is_authenticated %}
+  
+<div class="container-fluid" style="padding-top: 4rem;">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+       <h2>Update Profile</h2>
+       <hr>
+           
+      <form  action="{%url 'edit_profile' userId=user.id%}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+    
+        {% bootstrap_form form%}
+        <input type="submit" class="btn btn-success btn-lg" value="Post">
+      </form>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+
+
+
+{% else %}
+<li>
+  <a class='btn btn-default' href="/accounts/login">Login</a>
+</li>
+
+{% endif %}
+
+
+
+
+  {% endblock %}

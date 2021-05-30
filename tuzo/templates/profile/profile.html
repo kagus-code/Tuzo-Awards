@@ -33,19 +33,20 @@
     <div class="profile-user-settings">
       <h3 class="profile-user-name">{{user.username}}</h3>
       &nbsp; &nbsp; 
+      <a href="{%url 'edit_profile' userId=user.id%}"> <button class="btn btn-outline-dark"> <h3>Edit Profile</h3> </button></a>
       <button class="btn profile-settings-btn" aria-label="Profile Settings"> <i class="fas fa-cog" aria-hidden></i></button>
+
     </div>
      <div class="profile-stats">
        <ul>
          <li class="text-center"><span class="profile-stat-count">{{user.publisher.count}} </span>Projects</li>
-         
        </ul>
      </div>
      <div class="profile-bio">
-       <p><small>bio</small></p>
+       <p ><small style="font-weight: bold;">bio</small></p>
        <p>{{user.profile.bio}}</p>
        <div>
-       <h4>Contact Information</h4>
+       <h4 style="font-weight: bold;">Contact Information</h4>
        <p>{{user.profile.email}}</p>
        <p>{{user.profile.phone_number}}</p>
       </div>
