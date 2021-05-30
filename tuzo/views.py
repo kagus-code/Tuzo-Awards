@@ -17,18 +17,18 @@ def landing (request):
   return render (request,'index.html',{'title':title,'Posts':post,})  
 
 
-def upload_image(request):
+def upload_project(request):
   current_user = request.user
   if request.method == 'POST':
-    form = UploadProjectForm(request.POST, request.Files)
+    form = UploadProjectForm(request.POST, request.FILES)
     if form.is_valid():
       project = form.save(commit=False)
       project.Publisher = current_user
       project.save()
       return redirect(landing)
-    else:
+  else:
       form = UploadProjectForm
-    return render(request, 'upload.html', {"form":form})    
+  return render(request, 'upload.html', {"form":form})    
 
 
 
