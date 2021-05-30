@@ -33,22 +33,22 @@
     <div class="profile-user-settings">
       <h3 class="profile-user-name">{{user.username}}</h3>
       &nbsp; &nbsp; 
- -->
       <button class="btn profile-settings-btn" aria-label="Profile Settings"> <i class="fas fa-cog" aria-hidden></i></button>
     </div>
      <div class="profile-stats">
        <ul>
-         <li class="text-center"><span class="profile-stat-count">{{user.creator.count}} </span>posts</li>
+         <li class="text-center"><span class="profile-stat-count">{{user.publisher.count}} </span>Projects</li>
          
        </ul>
      </div>
      <div class="profile-bio">
-       <p><span class="profile-real-name">{{user.username}}</span> </p>
        <p><small>bio</small></p>
        <p>{{user.profile.bio}}</p>
+       <div>
        <h4>Contact Information</h4>
        <p>{{user.profile.email}}</p>
        <p>{{user.profile.phone_number}}</p>
+      </div>
      </div>
   </div>
      <!--End profile-->
@@ -60,14 +60,21 @@
   <main>  
 <div class="row">
     {% for post in posts %}
-    <div class="col-md-4">
-   <div class="gallery">
-     <div class="gallery-item" tabindex="0">
-       <a href="#"><img src="{{post.image.url}}" alt="" class="img-fluid">
-       </a>
-  
-     </div>
-   </div> 
+    <div class="col-md-4" style="font-size: 1.5rem;">
+      <div class="card mb-3" style="box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.7),
+      0 17px 50px 0 rgba(0, 0, 0, 0.7);">
+        <img class="embed-responsive-item" src="{{ post.lannding_page.url}}"  alt="image" >
+        <div class="card-body">
+          <h5 class="card-title">{{post.title}}</h5>
+          <p class="card-text">{{post.description}}</p>
+          <p class="card-text"><small class="text-muted">Published by you {{post.pub_date|timesince}} ago</small></p>
+        </div>
+        <hr>
+        <div class="card-body">
+          <a href=" {{post.link}}" class="card-link">Live link </a>
+          <a href="#" class="card-link"></a>
+        </div>
+      </div> 
   </div>
 
    {% endfor %}
