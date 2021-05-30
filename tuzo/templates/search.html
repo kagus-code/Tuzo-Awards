@@ -1,0 +1,71 @@
+{%extends 'base.html'%}
+
+{% load bootstrap4 %}
+{% load static%}
+
+
+
+
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/search.css'   %}">
+{% endblock %}
+
+
+{% block content %}
+{{block.super}}
+
+
+<div class="text-center">
+    
+      {% if posts%}
+        <h2>Found {{ posts|length }} Projects named {{message}}</h2>
+      {% else %}
+        <h2> Found 0 projects named {{message}}</h2>
+      {% endif %}
+    </div>
+
+<div class="container-fluid">
+  <div class="row">
+
+                  <!-- START OF POSTS -->
+ {% for post in posts%}
+<div class="col-md-4">
+
+
+
+
+  <div class="card mb-3" style="box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.7),
+  0 17px 50px 0 rgba(0, 0, 0, 0.7);">
+    <img class="embed-responsive-item" src="{{ post.lannding_page.url}}"  alt="image" >
+    <div class="card-body">
+      <h5 class="card-title">{{post.title}}</h5>
+      <p class="card-text">{{post.description}}</p>
+      <p class="card-text"><small class="text-muted">Published by {{post.Publisher}}  {{post.pub_date|timesince}} ago</small></p>
+    </div>
+    <hr>
+    <div class="card-body">
+      <a href=" {{post.link}}" class="card-link">Live link </a>
+      <a href="#" class="card-link"></a>
+    </div>
+  </div>
+
+
+</div>
+{% empty %}
+                      <div class="row">
+                        <h2 class="text-center">There No New Project posts yet</h2>
+                      </div>
+                      {% endfor %}
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+{%endblock%} 

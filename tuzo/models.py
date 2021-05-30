@@ -49,7 +49,7 @@ class Project(models.Model):
     return delete 
   @classmethod
   def search_projects(cls,search_term):
-        project = cls.objects.filter(title__name__icontains=search_term)
+        project = cls.objects.filter(title__icontains=search_term)
         return project    
 
   def __str__(self):

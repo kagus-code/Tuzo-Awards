@@ -61,7 +61,7 @@ def edit_profile(request,userId):
 
 
 def search_results(request):
-  if 'category' in request.GET and  request.GET["project"]:
+  if 'project' in request.GET and  request.GET["project"]:
     search_term = request.GET.get("project")
     searched_projects = Project.search_projects(search_term)
     message =f"{search_term}"
@@ -69,8 +69,8 @@ def search_results(request):
     return render(request, 'search.html', {"message":message, "posts":searched_projects,})
 
   else:
-    message = "You havent searched for any category"
+    message = "You havent searched for any projects"
 
-    return render(request, 'search.html', {"message":message})
+  return render(request, 'search.html', {"message":message})
 
 
