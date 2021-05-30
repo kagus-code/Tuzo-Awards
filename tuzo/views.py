@@ -4,7 +4,7 @@ from django.shortcuts import render,redirect
 from django.http  import HttpResponseRedirect,Http404
 from django.contrib.auth.decorators import login_required
 from .models import Project,Profile,Review
-from .forms import UploadProjectForm,UpdateProfileForm
+from .forms import UploadProjectForm,UpdateProfileForm,RateForm
 from django.urls import reverse
 
 # Create your views here.
@@ -72,5 +72,26 @@ def search_results(request):
     message = "You havent searched for any projects"
 
   return render(request, 'search.html', {"message":message})
+
+
+
+def rate(request,project_id):
+    project = Project.objects.filter(id=project_id)
+    user = request.user
+
+    if request.method == 'POST':
+      form = RateForm(request.POST)
+      if form.is_valid():
+        rate = form.save(commit=False)
+        rate.user = user
+        rate.project =project
+        rate.save()
+      return HttpResponseRedirect(reverse("landingPage"))
+    else:
+      form =RateForm()
+    return render (request, 'rate.html' , {"form": form,"project": project,})   
+
+
+
 
 
