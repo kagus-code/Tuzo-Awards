@@ -17,7 +17,7 @@ def landing (request):
 
 @login_required(login_url='/accounts/login/')
 def user_profile (request,userId):
-  projects = Project.objects.filter(creator=userId)
+  projects = Project.objects.filter(Publisher=userId)
   profile = Profile.objects.filter(user=userId)
   print(profile)
   profile=Profile.objects.all()

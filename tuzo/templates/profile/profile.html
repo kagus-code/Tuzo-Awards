@@ -1,0 +1,88 @@
+{%extends "profile/base.html"%}
+{% load cloudinary %}
+{% load bootstrap4 %}
+{% load static%}
+
+
+
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css'   %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+
+{% block content %}
+
+
+
+{% if user.is_authenticated %}
+<header>
+<div class="container">
+
+  <div class="profile">
+    <div class="profile-image">
+
+      {% if user.profile.profile_pic.url %}
+      <img src="{{user.profile.profile_pic.url}}"  alt="image"style="max-width: 200px;max-height: 200px;">
+      {% else %}
+      <img src="{% static 'images/avatar.png'%}"  alt="image"style="max-width: 200px;max-height: 200px;">
+      {% endif%}
+    </div>
+
+    <div class="profile-user-settings">
+      <h3 class="profile-user-name">{{user.username}}</h3>
+      &nbsp; &nbsp; 
+ -->
+      <button class="btn profile-settings-btn" aria-label="Profile Settings"> <i class="fas fa-cog" aria-hidden></i></button>
+    </div>
+     <div class="profile-stats">
+       <ul>
+         <li class="text-center"><span class="profile-stat-count">{{user.creator.count}} </span>posts</li>
+         
+       </ul>
+     </div>
+     <div class="profile-bio">
+       <p><span class="profile-real-name">{{user.username}}</span> </p>
+       <p><small>bio</small></p>
+       <p>{{user.profile.bio}}</p>
+       <h4>Contact Information</h4>
+       <p>{{user.profile.email}}</p>
+       <p>{{user.profile.phone_number}}</p>
+     </div>
+  </div>
+     <!--End profile-->
+</div>
+<!--End of Container-->
+</header>
+<hr>
+<div class="container-fluid">
+  <main>  
+<div class="row">
+    {% for post in posts %}
+    <div class="col-md-4">
+   <div class="gallery">
+     <div class="gallery-item" tabindex="0">
+       <a href="#"><img src="{{post.image.url}}" alt="" class="img-fluid">
+       </a>
+  
+     </div>
+   </div> 
+  </div>
+
+   {% endfor %}
+   <!--End Gallery-->
+  </div>
+  </main>
+ 
+</div>
+  {% else %}
+ <p>Please Log in to access this page </p>
+
+  {% endif %}
+
+
+
+
+
+{% endblock %}
