@@ -10,13 +10,13 @@ from .forms import UploadProjectForm
 # Create your views here.
 
 def landing (request):
-  post =Project.objects.all()
-  
-
+  post =Project.objects.all() 
   title = 'Tuzo-Awards'
   return render (request,'index.html',{'title':title,'Posts':post,})  
 
 
+
+@login_required(login_url='/accounts/login/')
 def upload_project(request):
   current_user = request.user
   if request.method == 'POST':
