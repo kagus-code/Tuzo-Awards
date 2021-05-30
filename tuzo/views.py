@@ -75,8 +75,8 @@ def search_results(request):
 
 
 
-def rate(request,project_id):
-    project = Project.objects.filter(id=project_id)
+def rate_project(request,project_id):
+    project = Project.objects.get(pk=project_id)
     user = request.user
 
     if request.method == 'POST':
@@ -84,12 +84,12 @@ def rate(request,project_id):
       if form.is_valid():
         rate = form.save(commit=False)
         rate.user = user
-        rate.project =project
+        rate.project= Project.objects.get(pk=project_id)
         rate.save()
-      return HttpResponseRedirect(reverse("landingPage"))
+      return HttpResponseRedirect(reverse("ratings", args=[project_id]))
     else:
       form =RateForm()
-    return render (request, 'rate.html' , {"form": form,"project": project,})   
+    return render (request, 'rate.html' , {"form": form,"post": project})   
 
 
 
