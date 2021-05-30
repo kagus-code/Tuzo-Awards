@@ -16,7 +16,7 @@
 
 {% block content %}
 <br>
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-md-6">
 
@@ -51,6 +51,42 @@
     </div>
   </div>
 </div>
+<br>
+<hr>
+<div class="container">
+
+  {% for review in reviews%}
+  <div class="row">
+     <div class="col-md-9">      
+       <p>
+        {% if review.user.profile.profile_pic.url %}
+        <img style="border-radius: 50%; max-width: 50px; max-height: 50px;" src=" {{review.user.profile.profile_pic.url}}" alt=""> 
+        {% else %}
+         <img style="border-radius: 50%; max-width: 50px; max-height: 50px;" src="{% static 'images/avatar.png'%}"  alt="image">
+        {% endif%}
+        <span>{{review.user}}</span></p>
+       <span>reviewed on {{review.date | date}}</span>
+     </div>
+     <div class="col-md-3">
+       <p>design: {{review.design}}/10</p>
+       <p>usability: {{review.usability}}/10</p>
+       <p>content : {{review.content}}/10</p>
+     </div>
+    
+  </div>
+  <hr>
+
+  {% empty %}
+  <div class="row">
+    <div class="col-md-12">
+<p>No reviewa for this project at the moment</p>
+    </div>
+  </div>
+  {% endfor %}
+ 
+</div>
+
+
 
 
 
