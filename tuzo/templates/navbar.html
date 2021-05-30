@@ -62,20 +62,19 @@
     </div>
 
 
-    <li class="search-icon">
 
   <form class="form" role="search" action="{% url 'search_results' %}">
+    <li class="search-icon">
+
       <input type="search" placeholder="search projects" name="project" id="">
       
-      <button  type="submit">
-      <label  class="icon">
-       
-        <span class="fas fa-search"></span>
-
-      </label>
-    </button>
-    </form>
+      <div class="input-group-btn">
+        <button class="btn btn-default" type="submit"><i class="fa fa-search" style="background: white; border-radius: 50px;"></i></button>
+      </div>
+   
     </li>
+
+     </form>
   </ul>
 </nav>
   
