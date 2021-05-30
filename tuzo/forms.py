@@ -8,3 +8,11 @@ class UploadProjectForm(forms.ModelForm):
   class Meta:
     model = Project
     exclude = ['pub_date','Publisher']
+
+
+class UpdateProfileForm(forms.ModelForm):
+
+  class Meta:
+    model = Profile
+
+    exclude=['user','user_name']
