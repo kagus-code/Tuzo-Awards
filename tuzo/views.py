@@ -75,7 +75,7 @@ def search_results(request):
   return render(request, 'search.html', {"message":message})
 
 
-
+@login_required(login_url='/accounts/login/')
 def rate_project(request,project_id):
     project = Project.objects.get(pk=project_id)
     reviews = Review.objects.filter(project=project_id)
