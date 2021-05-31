@@ -14,6 +14,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import ProfileSerializer,ProjectSerializers
 from rest_framework import status
+from .permissions import IsAdminOrReadOnly
+
 
 # Create your views here.
 
@@ -109,6 +111,7 @@ def rate_project(request,project_id):
     return render (request, 'rate.html' , {"form": form,"post": project, "reviews":reviews,"design_avg":design_avg,"usability_avg":usability_avg,"content_avg":content_avg,"average_all":average_all})   
 
 class ProfileList(APIView):
+  permission_classes = (IsAdminOrReadOnly,)
   def get(self,request, format=None):
     all_profiles  = Profile.objects.all()
     serializers =ProfileSerializer(all_profiles, many=True)
@@ -122,6 +125,12 @@ class ProfileList(APIView):
             return Response(serializers.data, status=status.HTTP_201_CREATED)
     return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class ProjectList(APIView):
+   permission_classes = (IsAdminOrReadOnly,)
+   def get(self, request, format=None):
+     all_projects = Project.objects.all()
+     serializers = ProjectSerializers(all_projects, many=True)
+     return Response(serializers.data)
 
 
 
