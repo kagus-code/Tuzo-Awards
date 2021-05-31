@@ -1,4 +1,5 @@
 from django.urls import path, re_path
+from rest_framework.authtoken.views import obtain_auth_token
 
 
 
@@ -15,5 +16,6 @@ urlpatterns = [
   re_path(r'^search/', views.search_results, name='search_results'),
   re_path(r'^ratings/(?P<project_id>\d+)/$', views.rate_project, name='ratings'),
   re_path(r'^api/profile/$', views.ProfileList.as_view()),
+  re_path(r'^api-token-auth/', obtain_auth_token),
 
 ]
