@@ -1,5 +1,6 @@
 from django.core.checks import messages
 from django.contrib.auth.models import User
+from django.db.models.aggregates import Avg
 from django.shortcuts import render,redirect
 from django.http  import HttpResponseRedirect,Http404
 from django.contrib.auth.decorators import login_required
@@ -79,6 +80,10 @@ def rate_project(request,project_id):
     project = Project.objects.get(pk=project_id)
     reviews = Review.objects.filter(project=project_id)
     user = request.user
+    design_avg =reviews.aggregate(Avg('design')).get('design__avg', 0.00)
+    usability_avg =reviews.aggregate(Avg('usability')).get('usability__avg', 0.00)
+    content_avg =reviews.aggregate(Avg('content')).get('content__avg', 0.00)
+
 
     if request.method == 'POST':
       form = RateForm(request.POST)
@@ -90,7 +95,7 @@ def rate_project(request,project_id):
       return HttpResponseRedirect(reverse("ratings", args=[project_id]))
     else:
       form =RateForm()
-    return render (request, 'rate.html' , {"form": form,"post": project, "reviews":reviews})   
+    return render (request, 'rate.html' , {"form": form,"post": project, "reviews":reviews,"design_avg":design_avg,"usability_avg":usability_avg,"content_avg":content_avg})   
 
 
 

@@ -47,6 +47,16 @@
 
         <button type="submit" class="btn btn-success btn-lg"  > Rate <i class="fas fa-star"></i></button>
       </form>
+     <br>
+     <hr>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-4"><h5>Avg Design</h5><i class="fas fa-star"></i> {{ design_avg }}/10 </div>
+          <div class="col-md-4"><h5>Avg Usability</h5><i class="fas fa-star"></i> {{ usability_avg }}/10</div>
+          <div class="col-md-4"><h5>Avg Content</h5><i class="fas fa-star"></i> {{ content_avg }}/10</div>
+        </div>
+      </div>
+<hr>
 
     </div>
   </div>
@@ -68,9 +78,9 @@
        <span>reviewed on {{review.date | date}}</span>
      </div>
      <div class="col-md-3">
-       <p>design: {{review.design}}/10</p>
-       <p>usability: {{review.usability}}/10</p>
-       <p>content : {{review.content}}/10</p>
+       <p>design<i class="far fa-star"></i> {{review.design}}/10</p>
+       <p>usability<i class="far fa-star"></i> {{review.usability}}/10</p>
+       <p>content <i class="far fa-star"></i> {{review.content}}/10</p>
      </div>
     
   </div>
@@ -79,7 +89,7 @@
   {% empty %}
   <div class="row">
     <div class="col-md-12">
-<p>No reviewa for this project at the moment</p>
+<p>No reviews for this project at the moment</p>
     </div>
   </div>
   {% endfor %}
