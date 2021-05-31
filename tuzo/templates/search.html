@@ -46,7 +46,7 @@
     <hr>
     <div class="card-body">
       <a href=" {{post.link}}" class="card-link">Live link </a>
-      <a href="#" class="card-link"></a>
+      <a href="{% url 'ratings' project_id=post.id %}" class="card-link"><button class="btn btn-success btn-lg ">Ratings <i class="fas fa-star"></i></button></a>
     </div>
   </div>
 

@@ -33,6 +33,12 @@
           {% if user.is_authenticated %}
           <ul >
             <li class="dropdown" >
+              {% if user.profile.profile_pic.url %}
+              <img style="border-radius: 50%; max-width: 50px; max-height: 50px;" src=" {{user.profile.profile_pic.url}}" alt=""> 
+              {% else %}
+               <img style="border-radius: 50%; max-width: 50px; max-height: 50px;" src="{% static 'images/avatar.png'%}"  alt="image">
+              {% endif%}
+
               <a href="{% url 'profile_page'  userId=user.id %} " class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">{{user.username}}
                         <span class="caret"></span>
                     </a>
