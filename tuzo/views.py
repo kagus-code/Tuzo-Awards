@@ -4,9 +4,16 @@ from django.db.models.aggregates import Avg
 from django.shortcuts import render,redirect
 from django.http  import HttpResponseRedirect,Http404
 from django.contrib.auth.decorators import login_required
+from rest_framework import serializers
 from .models import Project,Profile,Review
 from .forms import UploadProjectForm,UpdateProfileForm,RateForm
 from django.urls import reverse
+
+
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ProfileSerializer,ProjectSerializers
+from rest_framework import status
 
 # Create your views here.
 
@@ -53,6 +60,7 @@ def edit_profile(request,userId):
       else:
         profile.user = current_user
       profile.email = current_user.email
+      profile.user_name=current_user.username
       profile.save() 
       return HttpResponseRedirect(reverse('profile_page', args=[userId]))
   else:
@@ -99,6 +107,20 @@ def rate_project(request,project_id):
     else:
       form =RateForm()
     return render (request, 'rate.html' , {"form": form,"post": project, "reviews":reviews,"design_avg":design_avg,"usability_avg":usability_avg,"content_avg":content_avg,"average_all":average_all})   
+
+class ProfileList(APIView):
+  def get(self,request, format=None):
+    all_profiles  = Profile.objects.all()
+    serializers =ProfileSerializer(all_profiles, many=True)
+    return Response(serializers.data)
+
+  def post(self,request, format=None):
+    serializers =ProfileSerializer(data=request.data)
+
+    if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+    return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 

@@ -14,5 +14,6 @@ urlpatterns = [
   re_path(r'^profile/(?P<userId>\d+)/$', views.user_profile, name='profile_page'),
   re_path(r'^search/', views.search_results, name='search_results'),
   re_path(r'^ratings/(?P<project_id>\d+)/$', views.rate_project, name='ratings'),
+  re_path(r'^api/profile/$', views.ProfileList.as_view()),
 
 ]
