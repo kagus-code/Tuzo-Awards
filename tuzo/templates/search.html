@@ -41,16 +41,13 @@
     <div class="card-body">
       <h5 class="card-title">{{post.title}}</h5>
       <p class="card-text">{{post.description}}</p>
-      <p class="card-text"><small class="text-muted">Published by {{post.Publisher}}  {{post.pub_date|timesince}} ago</small></p>
     </div>
-    <hr>
-    <div class="card-body">
+    <div class="card-footer">
+      <p class="card-text"><small class="text-muted">Published by {{post.Publisher}}  {{post.pub_date|timesince}} ago</small></p>
       <a href=" {{post.link}}" class="card-link">Live link </a>
       <a href="{% url 'ratings' project_id=post.id %}" class="card-link"><button class="btn btn-outline-primary ">Rate Now <i class="fas fa-star"></i></button></a>
     </div>
   </div>
-
-
 </div>
 {% empty %}
                       <div class="row">
