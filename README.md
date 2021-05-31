@@ -63,7 +63,7 @@ Create .env file and paste paste the following and fill  required fields:
 - Postgressql
 
 ## link to live site on heroku
-
+https://tuzo-awards.herokuapp.com/
 
 
 
