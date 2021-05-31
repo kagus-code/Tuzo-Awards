@@ -83,8 +83,8 @@ def rate_project(request,project_id):
     design_avg =reviews.aggregate(Avg('design')).get('design__avg', 0.00)
     usability_avg =reviews.aggregate(Avg('usability')).get('usability__avg', 0.00)
     content_avg =reviews.aggregate(Avg('content')).get('content__avg', 0.00)
-
-
+    total_sum_avg = design_avg +usability_avg+content_avg
+    average_all ='{0:.2f}'.format(total_sum_avg/3)
     if request.method == 'POST':
       form = RateForm(request.POST)
       if form.is_valid():
@@ -95,7 +95,7 @@ def rate_project(request,project_id):
       return HttpResponseRedirect(reverse("ratings", args=[project_id]))
     else:
       form =RateForm()
-    return render (request, 'rate.html' , {"form": form,"post": project, "reviews":reviews,"design_avg":design_avg,"usability_avg":usability_avg,"content_avg":content_avg})   
+    return render (request, 'rate.html' , {"form": form,"post": project, "reviews":reviews,"design_avg":design_avg,"usability_avg":usability_avg,"content_avg":content_avg,"average_all":average_all})   
 
 
 
