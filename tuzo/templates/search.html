@@ -36,7 +36,7 @@
 
 
   <div class="card mb-3" style="box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.7),
-  0 17px 50px 0 rgba(0, 0, 0, 0.7);">
+  0 17px 50px 0 rgba(0, 0, 0, 0.7);height: 40rem;">
     <img class="embed-responsive-item" src="{{ post.lannding_page.url}}"  alt="image" >
     <div class="card-body">
       <h5 class="card-title">{{post.title}}</h5>
@@ -46,7 +46,7 @@
     <hr>
     <div class="card-body">
       <a href=" {{post.link}}" class="card-link">Live link </a>
-      <a href="{% url 'ratings' project_id=post.id %}" class="card-link"><button class="btn btn-success btn-lg ">Ratings <i class="fas fa-star"></i></button></a>
+      <a href="{% url 'ratings' project_id=post.id %}" class="card-link"><button class="btn btn-outline-primary ">Rate Now <i class="fas fa-star"></i></button></a>
     </div>
   </div>
 

@@ -83,8 +83,11 @@ def rate_project(request,project_id):
     design_avg =reviews.aggregate(Avg('design')).get('design__avg', 0.00)
     usability_avg =reviews.aggregate(Avg('usability')).get('usability__avg', 0.00)
     content_avg =reviews.aggregate(Avg('content')).get('content__avg', 0.00)
-    total_sum_avg = design_avg +usability_avg+content_avg
-    average_all ='{0:.2f}'.format(total_sum_avg/3)
+    if design_avg and usability_avg and content_avg is not None:
+      total_sum_avg = design_avg +usability_avg+content_avg
+      average_all ='{0:.2f}'.format(total_sum_avg/3)
+    else:
+      average_all = ' '+'is not available'  
     if request.method == 'POST':
       form = RateForm(request.POST)
       if form.is_valid():
