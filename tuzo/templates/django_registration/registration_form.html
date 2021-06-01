@@ -25,7 +25,8 @@
 
       <form  action="/accounts/register/" method="post">
         {% csrf_token %}
-        {% bootstrap_form form%}
+        {% bootstrap_form form layout='inline'%}
+        
 
         <div class="form-group">
           <button type="submit" class="btn solid" value="Sign Up">Sign Up</button>
