@@ -1,7 +1,7 @@
 from django.core.checks import messages
 from django.contrib.auth.models import User
 from django.db.models.aggregates import Avg
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404, render,redirect
 from django.http  import HttpResponseRedirect,Http404
 from django.contrib.auth.decorators import login_required
 from django.urls.base import reverse_lazy
@@ -139,11 +139,15 @@ class ProjectList(APIView):
 class profile_updateView(UpdateView):
   template_name ='update_profile.html'
   form_class = UpdateProfileForm
-  queryset = Profile.objects.all()
+  
+
+  def get_object(self):
+    user=self.kwargs['userId']
+    return get_object_or_404(Profile , user=user)
 
   def get_success_url(self):
 
-          userId=self.kwargs['pk']
+          userId=self.kwargs['userId']
           return reverse_lazy('profile_page', kwargs={'userId': userId})
 
 
