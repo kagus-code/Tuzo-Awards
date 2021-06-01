@@ -33,7 +33,11 @@
     <div class="profile-user-settings">
       <h3 class="profile-user-name">{{user.username}}</h3>
       &nbsp; &nbsp; 
-      <a href="{%url 'edit_profile' userId=user.id%}"> <button class="btn btn-outline-dark"> <h3>Edit Profile</h3> </button></a>
+      {% if user.profile %}
+      <a href="{%url 'update_profile' pk=user.id%}"> <button class="btn btn-outline-dark"> <h3>Update Profile</h3> </button></a>
+      {%else %}
+      <a href="{%url 'edit_profile' userId=user.id%}"> <button class="btn btn-outline-dark"> <h3>Create Profile</h3> </button></a>
+      {% endif %}
       <button class="btn profile-settings-btn" aria-label="Profile Settings"> <i class="fas fa-cog" aria-hidden></i></button>
 
     </div>

@@ -3,6 +3,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 
 
+
 from . import views
 
 
@@ -15,6 +16,7 @@ urlpatterns = [
   re_path(r'^profile/(?P<userId>\d+)/$', views.user_profile, name='profile_page'),
   re_path(r'^search/', views.search_results, name='search_results'),
   re_path(r'^ratings/(?P<project_id>\d+)/$', views.rate_project, name='ratings'),
+  re_path(r'^update_profile/(?P<pk>\d+)/$', views.profile_updateView.as_view(), name='update_profile'),
   re_path(r'^api/profiles/$', views.ProfileList.as_view()),
   re_path(r'^api/projects/$', views.ProjectList.as_view()),
   re_path(r'^api-token-auth/', obtain_auth_token),

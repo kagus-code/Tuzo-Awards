@@ -4,6 +4,8 @@ from django.db.models.aggregates import Avg
 from django.shortcuts import render,redirect
 from django.http  import HttpResponseRedirect,Http404
 from django.contrib.auth.decorators import login_required
+from django.urls.base import reverse_lazy
+from django.views.generic.edit import UpdateView
 from rest_framework import serializers
 from .models import Project,Profile,Review
 from .forms import UploadProjectForm,UpdateProfileForm,RateForm
@@ -134,4 +136,15 @@ class ProjectList(APIView):
 
 
 
+class profile_updateView(UpdateView):
+  template_name ='update_profile.html'
+  form_class = UpdateProfileForm
+  queryset = Profile.objects.all()
 
+  def get_success_url(self):
+
+          userId=self.kwargs['pk']
+          return reverse_lazy('profile_page', kwargs={'userId': userId})
+
+
+  
