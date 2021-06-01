@@ -14,21 +14,8 @@
 <nav>
   <ul>
     <li class="logo"><a href="/" style="text-decoration: none; color: white;"> Tuzo-Awards <img src="{% static 'images/logomain.png'   %}"  alt="logo" style="width:50px"> </a> </li>
-    <li class="btn"><span class="fas fa-bars"></span></li>
     <div class="items">
-      <li class=" ">
-        <a class="" href="/">Home</a>
-      </li>
-      <li class="">
-        <a class="" href="#">Services</a>
-      </li>
-     
-      <li class="">
-        <a class="" href="mailto:ekagwima745@gmail.com"
-          >Contact</a
-        >
-      </li>
-      <li class="">
+      <li class="dropdown">
         <div >
           {% if user.is_authenticated %}
           <ul >
@@ -65,6 +52,15 @@
           {% endif %}
         </div>
       </li>
+      <li class=" ">
+        <a class="" href="/">Home</a>
+      </li>
+      <li class="">
+        <a class="" href="mailto:ekagwima745@gmail.com"
+          >Contact</a
+        >
+      </li>
+      
     </div>
 
 
